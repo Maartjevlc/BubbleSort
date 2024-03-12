@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="118366"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-03-12 02:39:07 "/>
+        <attribute name="created" value="MTE4MzY2O1ZMQy1JTkZPUjMxOzIwMjQtMDMtMTI7IjAxOjQ2OjI1ICI7MjI1Ng=="/>
+        <attribute name="edited" value="MTE4MzY2O1ZMQy1JTkZPUjMxOzIwMjQtMDMtMTI7IjAyOjM5OjA3ICI7MjsyMzY4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="Dit programma sorteert een rij getallen via bubble sort."/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <output expression="&quot;Hoeveel getallen wil je sorteren?&quot;" newline="True"/>
+            <input variable="i"/>
+            <comment text="De gebruiker bepaalt hoe lang de rij is die de gebruiker gaat sorteren."/>
+            <declare name="Rij" type="Integer" array="True" size="i"/>
+            <comment text="Er wordt een random getal (tussen de 0 en 100) toegewezen aan elk onderdeel in de array."/>
+            <for variable="i" start="0" end="size(Rij)-1" direction="inc" step="1">
+                <assign variable="Rij[i]" expression="random(100)"/>
+            </for>
+            <declare name="opslag" type="Integer" array="False" size=""/>
+            <declare name="R" type="Integer" array="False" size=""/>
+            <for variable="R" start="0" end="size(Rij)-1" direction="inc" step="1">
+                <for variable="i" start="0" end="size(Rij)-2" direction="inc" step="1">
+                    <if expression="Rij[i]&gt;Rij[i+1]">
+                        <then>
+                            <comment text="Als de eerste waarde groter is dan de tweede, worden deze omgedraait."/>
+                            <assign variable="opslag" expression="Rij[i]"/>
+                            <comment text="Opslag krijgt de waarde die daar eerst stond, zodat die waarde niet verloren gaat."/>
+                            <assign variable="Rij[i]" expression="Rij[i+1]"/>
+                            <assign variable="Rij[i+1]" expression="opslag"/>
+                            <comment text="Waarde i+1 krijgt de waarde die nu in de opslag staat. Op deze manier zijn de waardes van getal 1 en 2 gewisseld."/>
+                        </then>
+                        <else/>
+                    </if>
+                    <comment text="Dit wordt herhaald totdat elke waarde vergeleken in met de waarde daarvoor."/>
+                </for>
+                <comment text="Dit wordt herhaald het aantal variabelen in de rij min 1. Op deze manier is de rij gesorteerd van klein naar groot."/>
+            </for>
+            <for variable="i" start="0" end="size(Rij)-2" direction="inc" step="1">
+                <comment text="De gesorteerde lijst getallen wordt gegeven met een spatie tussen elke waarde."/>
+                <output expression="Rij[i] &amp; &quot; &quot;" newline="False"/>
+            </for>
+            <comment text="De rij wordt gegeven aan de gebruiker, maar zonder een spatie na de laatste waarde."/>
+            <output expression="Rij[size(Rij)-1]" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
